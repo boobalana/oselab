@@ -1,4 +1,4 @@
-﻿{
+{
 	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
@@ -12,23 +12,16 @@
 		},
 		"osDiskStorageAccount": {
 			"type": "string",
-			"defaultValue": "https://00ignitelabdisks808.blob.core.windows.net/"
+			"defaultValue": "https://redhatsystd.blob.core.windows.net/"
 		},
 		"masterVmSize": {
 			"type": "string",
-			"defaultValue": "Standard_DS3_v2",
+			"defaultValue": "Standard_D2_v2",
 			"allowedValues": [
 				"Standard_A4", "Standard_A5", "Standard_A6", "Standard_A7", "Standard_A8", "Standard_A9", "Standard_A10", "Standard_A11",
 				"Standard_D2", "Standard_D3", "Standard_D4",
 				"Standard_D11", "Standard_D12", "Standard_D13", "Standard_D14",
-				"Standard_D2_v2", "Standard_D3_v2", "Standard_D4_v2", "Standard_D5_v2",
-				"Standard_D11_v2", "Standard_D12_v2", "Standard_D13_v2", "Standard_D14_v2",
-				"Standard_G1", "Standard_G2", "Standard_G3", "Standard_G4", "Standard_G5",
-				"Standard_DS3", "Standard_DS4",
-				"Standard_DS11", "Standard_DS12", "Standard_DS13", "Standard_DS14",
-				"Standard_DS2_v2", "Standard_DS3_v2", "Standard_DS4_v2", "Standard_DS5_v2",
-				"Standard_DS11_v2", "Standard_DS12_v2", "Standard_DS13_v2", "Standard_DS14_v2",
-				"Standard_GS1", "Standard_GS2", "Standard_GS3", "Standard_GS4", "Standard_GS5"
+				"Standard_D2_v2", "Standard_D3_v2", "Standard_D4_v2", "Standard_D5_v2"
 			],
 			"metadata": {
 				"description": "OpenShift Master VM size"
@@ -36,20 +29,13 @@
 		},
 		"nodeVmSize": {
 			"type": "string",
-			"defaultValue": "Standard_DS3_v2",
+			"defaultValue": "Standard_D2_v2",
 			"allowedValues": [
 				"Standard_A4", "Standard_A5", "Standard_A6", "Standard_A7", "Standard_A8", "Standard_A9", "Standard_A10", "Standard_A11",
 				"Standard_D2", "Standard_D3", "Standard_D4",
 				"Standard_D11", "Standard_D12", "Standard_D13", "Standard_D14",
-				"Standard_D2_v2", "Standard_D3_v2", "Standard_D4_v2", "Standard_D5_v2",
-				"Standard_D11_v2", "Standard_D12_v2", "Standard_D13_v2", "Standard_D14_v2",
-				"Standard_G1", "Standard_G2", "Standard_G3", "Standard_G4", "Standard_G5",
-				"Standard_DS3", "Standard_DS4",
-				"Standard_DS11", "Standard_DS12", "Standard_DS13", "Standard_DS14",
-				"Standard_DS2_v2", "Standard_DS3_v2", "Standard_DS4_v2", "Standard_DS5_v2",
-				"Standard_DS11_v2", "Standard_DS12_v2", "Standard_DS13_v2", "Standard_DS14_v2",
-				"Standard_GS1", "Standard_GS2", "Standard_GS3", "Standard_GS4", "Standard_GS5"
-			],
+				"Standard_D2_v2", "Standard_D3_v2", "Standard_D4_v2", "Standard_D5_v2"
+				],
 			"metadata": {
 				"description": "OpenShift Node VM(s) size"
 			}
@@ -57,31 +43,21 @@
 		"openshiftMasterHostname": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "mhn",
 			"metadata": {
 				"description": "OpenShift Master hostname"
 			}
 		},
-		"openshiftMasterPublicIpDnsLabelPrefix": {
-			"type": "string",
-			"minLength": 1,
-			"metadata": {
-				"description": "OpenShift Master VM public IP DNS name. Must be lowercase. It should match with the following regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$ or it will raise an error."
-			}
-		},
+
 		"nodePrefix": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "nn",
 			"metadata": {
 				"description": "OpenShift Node VM prefix"
 			}
 		},
-		"nodeLbPublicIpDnsLabelPrefix": {
-			"type": "string",
-			"minLength": 1,
-			"metadata": {
-				"description": "OpenShift Nodes Load Balancer public IP DNS name. Must be lowercase. It should match with the following regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$ or it will raise an error."
-			}
-		},
+
 		"nodeInstanceCount": {
 			"type": "int",
 			"defaultValue": 1,
@@ -93,6 +69,7 @@
 		"adminUsername": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "adminuser",
 			"metadata": {
 				"description": "Administrator username on all VMs"
 			}
@@ -107,6 +84,7 @@
 		"cloudAccessUsername": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "pradeep-sysgain",
 			"metadata": {
 				"description": "Cloud Access Username"
 			}
@@ -121,6 +99,7 @@
 		"cloudAccessPoolId": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "8a85f98151bb49d20151ca249d483d93",
 			"metadata": {
 				"description": "Pool ID with RHEL and OpenShift entitlements"
 			}
@@ -134,6 +113,7 @@
 		"subscriptionId": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "7eab3893-bd71-4690-84a5-47624df0b0e5",
 			"metadata": {
 				"description": "Azure Subscription ID"
 			}
@@ -141,6 +121,7 @@
 		"keyVaultResourceGroup": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "bbtestos6",
 			"metadata": {
 				"description": "Resource Group that contains the Key Vault"
 			}
@@ -148,6 +129,7 @@
 		"keyVaultName": {
 			"type": "string",
 			"minLength": 1,
+			"defaultValue": "bbopenshiftkeyvault6",
 			"metadata": {
 				"description": "Name of the Key Vault"
 			}
@@ -155,6 +137,7 @@
 		"keyVaultSecret": {
 			"type": "securestring",
 			"minLength": 1,
+			"defaultValue": "privatekey6",
 			"metadata": {
 				"description": "Key Vault Secret Name that contains the Private Key"
 			}
@@ -162,6 +145,8 @@
 	},
 	"variables": {
 		"location": "[resourceGroup().location]",
+		"openshiftMasterPublicIpDnsLabelPrefix":"[concat('mas-',uniqueString(resourceGroup().id))]",
+		"nodeLbPublicIpDnsLabelPrefix":"[concat('nod-',uniqueString(resourceGroup().id))]",
 		"apiVersionCompute": "2015-06-15",
 		"apiVersionNetwork": "2015-06-15",
 		"apiVersionStorage": "2015-06-15",
@@ -177,7 +162,7 @@
 		"masterSubnetName": "mastersubnet",
 		"nodeSubnetName": "[concat(variables('namingInfix'), 'nodesubnet')]",
 		"nodeLoadBalancerName": "[concat(variables('namingInfix'), 'lb')]",
-		"nodePublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('nodeLbPublicIpDnsLabelPrefix'))]",
+		"nodePublicIpAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('nodeLbPublicIpDnsLabelPrefix'))]",
 		"nodeLbId": "[resourceId('Microsoft.Network/loadBalancers', variables('nodeLoadBalancerName'))]",
 		"lbFrontEndConfigId": "[concat(variables('nodeLbId'), '/frontendIPConfigurations/loadBalancerFrontEnd')]",
 		"lbBackendPoolId": "[concat(variables('nodeLbId'),'/backendAddressPools/loadBalancerBackend')]",
@@ -460,7 +445,7 @@
 			}
 		}, {
 			"type": "Microsoft.Network/publicIPAddresses",
-			"name": "[parameters('nodeLbPublicIpDnsLabelPrefix')]",
+			"name": "[variables('nodeLbPublicIpDnsLabelPrefix')]",
 			"location": "[variables('location')]",
 			"apiVersion": "[variables('apiVersionNetwork')]",
 			"tags": {
@@ -469,7 +454,7 @@
 			"properties": {
 				"publicIPAllocationMethod": "Static",
 				"dnsSettings": {
-					"domainNameLabel": "[parameters('nodeLbPublicIpDnsLabelPrefix')]"
+					"domainNameLabel": "[variables('nodeLbPublicIpDnsLabelPrefix')]"
 				}
 			}
 		}, {
@@ -487,7 +472,7 @@
 				"displayName": "OpenShiftNodeLB"
 			},
 			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', parameters('nodeLbPublicIpDnsLabelPrefix'))]"
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('nodeLbPublicIpDnsLabelPrefix'))]"
 			],
 			"properties": {
 				"frontendIPConfigurations": [{
@@ -580,7 +565,7 @@
 
 		{
 			"type": "Microsoft.Network/publicIPAddresses",
-			"name": "[parameters('openshiftMasterPublicIpDnsLabelPrefix')]",
+			"name": "[variables('openshiftMasterPublicIpDnsLabelPrefix')]",
 			"location": "[variables('location')]",
 			"apiVersion": "[variables('apiVersionNetwork')]",
 			"tags": {
@@ -589,7 +574,7 @@
 			"properties": {
 				"publicIPAllocationMethod": "Static",
 				"dnsSettings": {
-					"domainNameLabel": "[parameters('openshiftMasterPublicIpDnsLabelPrefix')]"
+					"domainNameLabel": "[variables('openshiftMasterPublicIpDnsLabelPrefix')]"
 				}
 			}
 		}, {
@@ -601,7 +586,7 @@
 				"displayName": "OpenShiftMasterNetworkInterface"
 			},
 			"dependsOn": [
-				"[concat('Microsoft.Network/publicIPAddresses/', parameters('openshiftMasterPublicIpDnsLabelPrefix'))]"
+				"[concat('Microsoft.Network/publicIPAddresses/', variables('openshiftMasterPublicIpDnsLabelPrefix'))]"
 			],
 			"properties": {
 				"ipConfigurations": [{
@@ -609,7 +594,7 @@
 					"properties": {
 						"privateIPAllocationMethod": "Dynamic",
 						"publicIPAddress": {
-							"id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('openshiftMasterPublicIpDnsLabelPrefix'))]"
+							"id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('openshiftMasterPublicIpDnsLabelPrefix'))]"
 						},
 						"subnet": {
 							"id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('masterSubnetName'))]"
@@ -827,10 +812,10 @@
 						"value": "[parameters('openshiftMasterHostname')]"
 					},
 					"openshiftMasterPublicIpFqdn": {
-						"value": "[reference(parameters('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn]"
+						"value": "[reference(variables('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn]"
 					},
 					"openshiftMasterPublicIpAddress": {
-						"value": "[reference(parameters('openshiftMasterPublicIpDnsLabelPrefix')).ipAddress]"
+						"value": "[reference(variables('openshiftMasterPublicIpDnsLabelPrefix')).ipAddress]"
 					},
 					"nodePrefix": {
 						"value": "[variables('namingInfix')]"
@@ -854,7 +839,7 @@
 						"value": "[parameters('cloudAccessPoolId')]"
 					},
 					"defaultSubDomain": {
-						"value": "[concat(reference(parameters('nodeLbPublicIpDnsLabelPrefix')).ipAddress, '.xip.io')]"
+						"value": "[concat(reference(variables('nodeLbPublicIpDnsLabelPrefix')).ipAddress, '.xip.io')]"
 					},
 					"sshPrivateKey": {
 						"reference": {
@@ -871,15 +856,15 @@
 	"outputs": {
 		"openshiftConsoleUrl": {
 			"type": "string",
-			"value": "[concat('https://', reference(parameters('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn, ':8443/console')]"
+			"value": "[concat('https://', reference(variables('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn, ':8443/console')]"
 		},
 		"openshiftMasterSsh": {
 			"type": "string",
-			"value": "[concat('ssh ', parameters('adminUsername'), '@', reference(parameters('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn)]"
+			"value": "[concat('ssh ', parameters('adminUsername'), '@', reference(variables('openshiftMasterPublicIpDnsLabelPrefix')).dnsSettings.fqdn)]"
 		},
 		"openshiftNodeLoadBalancerFQDN": {
 			"type": "string",
-			"value": "[reference(parameters('nodeLbPublicIpDnsLabelPrefix')).dnsSettings.fqdn]"
+			"value": "[reference(variables('nodeLbPublicIpDnsLabelPrefix')).dnsSettings.fqdn]"
 		},
 		"openshiftconsoleLogin": {
 			"type": "string",
