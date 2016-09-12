@@ -183,7 +183,7 @@
 			}
 		},
 		"osDiskVhdSourceContainer": "images/",
-		"osDiskVhdContainer": "labdeploy/",
+		"osDiskVhdContainer": "[concat('vhd-',uniqueString(resourceGroup().id),'/')]",
 		"userImageMasterVhdName": "oselabmaster-osDisk.vhd",
 		"userImageNodeVhdName": "oselabnode-osDisk.vhd",
 		"userImageMasterName": "[concat(parameters('osDiskStorageAccount'), variables('osDiskVhdSourceContainer'), variables('userImageMasterVhdName'))]",
